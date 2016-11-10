@@ -2,22 +2,13 @@ package exercise1
 
 object Recursive{
 
-  //Oh, no! This is not recursive
-  def largest(tree: Tree[Int]): List[Int] ={
-    var search = tree.leaves.map{ (List(tree.value), _) }
-    var list = tree.value :: Nil
-    var value = tree.value
-
-    while(search.nonEmpty){
-      val (seen, Tree(v, leaves)) :: tail = search
-      val calc = seen.sum
-      val current = seen :+ v
-      if(value <= v+calc && leaves.isEmpty){
-      	value = v+calc
-      	list = current
-      }
-      search = leaves.map{ (current, _) } ::: tail
-    }
-    list
+  def largest(tree: Tree[Int]): List[Int] = tree.leaves match{
+  	case Nil => tree.value :: Nil
+  	case many => 
+  	  val candidates = many.map{ largest(_) }
+  	  val best = candidates.foldLeft(List.empty[Int]){
+  	  	case (left, right) => if(left.sum <= right.sum) right else left
+  	  }
+  	  tree.value :: best
   }
 }

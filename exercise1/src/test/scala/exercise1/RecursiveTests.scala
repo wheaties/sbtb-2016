@@ -22,7 +22,7 @@ class RecursiveTests extends WordSpec with Matchers{
   	  rec should equal (imp)
   	}
 
-  	/*"handle this challenge" in{
+  	"handle this challenge" in{
   	  val tree3 = Tree(0, List(
   	  	Tree(1, List(
   	  	  Tree(1, List(Tree(1, Nil)))
@@ -61,6 +61,6 @@ class RecursiveTests extends WordSpec with Matchers{
   	  ))
 
   	  Imperative.largest(tree3) should equal(Recursive.largest(tree3))
-  	}*/
+  	}
   }
 }

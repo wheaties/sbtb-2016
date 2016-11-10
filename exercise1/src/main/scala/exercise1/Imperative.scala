@@ -8,10 +8,10 @@ object Imperative{
 
     while(search.nonEmpty){
       val (seen, Tree(v, leaves)) :: tail = search
-      val calc = seen.sum
+      val calc = seen.sum + v
       val current = seen :+ v
-      if(value <= v+calc  && leaves.isEmpty){
-      	value = v+calc
+      if(value <= calc && leaves.isEmpty){
+      	value = calc
       	list = current
       }
       search = leaves.map{ (current, _) } ::: tail
