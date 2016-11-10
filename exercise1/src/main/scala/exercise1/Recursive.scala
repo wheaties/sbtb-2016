@@ -1,6 +1,8 @@
 package exercise1
 
-object Imperative{
+object Recursive{
+
+  //Oh, no! This is not recursive
   def largest(tree: Tree[Int]): List[Int] ={
     var search = tree.leaves.map{ (List(tree.value), _) }
     var list = tree.value :: Nil
@@ -10,7 +12,7 @@ object Imperative{
       val (seen, Tree(v, leaves)) :: tail = search
       val calc = seen.sum
       val current = seen :+ v
-      if(value <= v+calc  && leaves.isEmpty){
+      if(value <= v+calc && leaves.isEmpty){
       	value = v+calc
       	list = current
       }
