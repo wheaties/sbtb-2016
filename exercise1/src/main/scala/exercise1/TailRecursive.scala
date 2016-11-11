@@ -4,11 +4,17 @@ import scala.annotation.tailrec
 
 object TailRecursive{
   def largest(tree: Tree[Int]): List[Int] ={
-    val candidates = tree.leaves.map{ largest(_) }
-    val best = candidates.foldLeft(List.empty[Int]){
-    case (Nil, right) => right
-  	  case (left, right) => if(left.sum <= right.sum) right else left
-    }
-    tree.value :: best
+    @tailrec def _largest(
+    	current: List[(List[Int], Tree[Int])], 
+    	acc: List[Int] = Nil): List[Int] =
+      current match{
+      	case Nil => acc
+      	case (trial, Tree(v, Nil)) :: tail =>
+      	  _largest(tail, if(acc.sum <= trial.sum + v) trial :+ v else acc)
+      	case (trial, Tree(v, leaves)) :: tail => 
+      	  _largest(leaves.map{ (trial :+ v, _) } ::: tail, acc)
+      }
+
+    _largest((Nil, tree) :: Nil)
   }
 }

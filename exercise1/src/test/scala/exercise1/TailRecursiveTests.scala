@@ -10,7 +10,7 @@ class TailRecursiveTests extends WordSpec with Matchers{
   	Tree(-1, List(Tree(7, Nil)))
   ))
 
-  "Recursive" should{
+  "TailRecursive" should{
   	"handle an empty list Tree" in{
   	  TailRecursive.largest(tree1) should equal(List(1))
   	}
