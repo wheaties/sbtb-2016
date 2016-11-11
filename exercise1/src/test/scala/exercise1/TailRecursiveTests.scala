@@ -2,7 +2,7 @@ package exercise1
 
 import org.scalatest.{ Matchers, WordSpec }
 
-class RecursiveTests extends WordSpec with Matchers{
+class TailRecursiveTests extends WordSpec with Matchers{
   val tree1 = Tree(1, Nil)
   val tree2 = Tree(1, List(
   	Tree(1, Nil),
@@ -12,12 +12,12 @@ class RecursiveTests extends WordSpec with Matchers{
 
   "Recursive" should{
   	"handle an empty list Tree" in{
-  	  Recursive.largest(tree1) should equal(List(1))
+  	  TailRecursive.largest(tree1) should equal(List(1))
   	}
 
   	"produce matching results" in{
   	  val imp = Imperative.largest(tree2)
-  	  val rec = Recursive.largest(tree2)
+  	  val rec = TailRecursive.largest(tree2)
 
   	  rec should equal (imp)
   	}
@@ -62,7 +62,7 @@ class RecursiveTests extends WordSpec with Matchers{
   	  	))
   	  ))
 
-  	  Imperative.largest(tree3) should equal(Recursive.largest(tree3))
+  	  Imperative.largest(tree3) should equal(TailRecursive.largest(tree3))
   	}
   }
 }
