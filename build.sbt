@@ -31,8 +31,10 @@ def build(pjName: String, base: String) = Project(
 lazy val root = (project in file(".")).settings(
   publishArtifact := false
 )
-.aggregate(presentation, exercise1)
+.aggregate(presentation, exercise1, exercise2)
 
 lazy val presentation = build("presentation", "presentation")
 
 lazy val exercise1 = build("exercise1", "exercise1")
+
+lazy val exercise2 = build("exercise2", "exercise2")
