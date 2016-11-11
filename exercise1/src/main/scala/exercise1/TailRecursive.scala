@@ -9,6 +9,8 @@ object TailRecursive{
     	acc: List[Int] = Nil): List[Int] =
       current match{
       	case Nil => acc
+      	case (trial, Tree(v, Nil)) :: tail if acc.isEmpty =>
+      	  _largest(tail, trial :+ v)
       	case (trial, Tree(v, Nil)) :: tail =>
       	  _largest(tail, if(acc.sum <= trial.sum + v) trial :+ v else acc)
       	case (trial, Tree(v, leaves)) :: tail => 
