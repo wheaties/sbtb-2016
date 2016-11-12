@@ -34,6 +34,12 @@ lazy val root = (project in file(".")).settings(
 .aggregate(presentation, exercise1, exercise2)
 
 lazy val presentation = build("presentation", "presentation")
+  .settings{
+    libraryDependencies ++= Seq(
+      compilerPlugin("com.github.wheaties" %% "twotails" % "0.3.0"),
+      "com.github.wheaties" %% "twotails-annotations" % "0.3.0"
+    )
+  }
 
 lazy val exercise1 = build("exercise1", "exercise1")
 
